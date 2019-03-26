@@ -45,7 +45,8 @@ def add_ingredients(ingredients)
 end
 
 def add_recipe(recipe)
-  Recipe.find_or_create_by(:name => recipe["title"], :link => recipe["href"])
+  name = recipe["title"].gsub("Recipe","").rstrip
+  Recipe.find_or_create_by(:name => name, :link => recipe["href"])
 end
 
 def map_recipe_with_ingredient(recipe_list)

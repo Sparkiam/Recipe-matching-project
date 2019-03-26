@@ -2,6 +2,7 @@ require_relative '../config/environment'
 
 # puts "Yo dog, I heard you like ingredients. You can ingredient while you in ingredient so you can ingredient while you ingredient."
 
+
 puts "Welcome to your nightmare!\nWe are your hosts: Yev and Jack!"
 puts "~~~~~~\n~~~~~~\n~~~~~~"
 sleep(1)
@@ -19,4 +20,4 @@ sleep(1)
 puts "Are you ready to cook?\n1) 'Yes'\n2) 'Hold on, I've got more food!''\n3)'I'm out, you are rude!'"
 choice = gets.chomp
 decision(choice, current_user)
-0
+

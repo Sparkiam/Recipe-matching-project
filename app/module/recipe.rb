@@ -4,7 +4,6 @@ class Recipe < ActiveRecord::Base
 
   def get_ingredients_names
     self.ingredients.map do |ingredient|
-      # binding.pry
       ingredient.name
     end
   end
