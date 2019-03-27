@@ -1,3 +1,25 @@
+def greeting
+  puts "Welcome to your nightmare!\nWe are your hosts: Yev and Jack!"
+  puts "~~~~~~\n~~~~~~\n~~~~~~"
+  # sleep(1)
+  puts "Please, tell us your name"
+end
+
+def gathering_user_data(input)
+  current_user = User.find_by("username = '#{input}'")
+  if current_user
+     puts "Oh, no, not you again..."
+  else
+    current_user = User.create(:username => input)
+    puts "#{input.capitalize}?! What a dumb name!!"
+  end
+  # sleep(1)
+  puts "Well, #{input.capitalize}, I guess we could help you out!"
+  # sleep(1)
+  puts "So, tell us something..."
+  return current_user
+end
+
 def kitchen_query(user)
   puts "What food do you have in your kitchen?"
   puts "Hint: Once you are done checking your kitchen, press 'q'\nPress 'h' for more options"
@@ -5,18 +27,20 @@ def kitchen_query(user)
   while food != "q"
     food = gets.chomp.downcase
     if food == "h"
-      puts "So, you need help?!\nPress 'i' for an idea of what you have\nOr press 'k' to list what is already in your kitchen!\nPress 'h' to exit this help menu\nAnd press 'x' to leave our program!"
-      # binding.pry
-      help = gets.chomp
-      if help == "i"
-        puts Ingredient.get_ingredients_names.sample(10)
-      elsif help == "k"
-        puts user.get_ingredients_names
-      elsif help == "h"
-        break
-      elsif help == "x"
-        return "Thank you! Maybe next time..."
-      end
+    puts "So, you need help?!\nPress 'i' for an idea of what you have\nOr press 'k' to list what is already in your kitchen!\nPress 'h' to exit this help menu\nPress 'm' to magically add food to your kitchen!\nAnd press 'x' to leave our program!"
+    # binding.pry
+    elsif food == "i"
+      puts Ingredient.get_ingredients_names.sample(10)
+    elsif food == "k"
+      puts user.get_ingredients_names
+    elsif food == "h"
+      break
+    elsif food == "x"
+      return "Thank you! Maybe next time..."
+    elsif food == "m"
+      puts "Cheating is not beneath you I see...."
+      sleep(1)
+      puts "Very well, then. "
     elsif Ingredient.get_ingredients_names.include?(food)
       user.add_ingredient(food)
       array = ["That's gross", "Wow, me too!", "I just ran out of that!", "My cat likes that too", "We threw one of those away this morning, I hope you didn't get ours...", "#{food.capitalize}! Sounds tasty!!!"]
@@ -55,7 +79,7 @@ def cooking(current_user)
   puts "Sorting.... Processing...\n"
   sleep(1)
   puts "Ding, all sorted!"
-  current_user.get_recipes_i_complete_recipes
+  current_user.get_recipes_i_can_make
   current_user.list_complete_recipes
   current_user.list_incomplete_recipes
   #it goes back into the decision method. So we need to connect to a new method or break out of that one

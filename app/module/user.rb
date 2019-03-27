@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def get_recipes_i_complete_recipes
+  def get_recipes_i_can_make
     @complete_recipes = []
     @incomplete_recipes = []
     h = {}
