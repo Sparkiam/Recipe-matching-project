@@ -4,7 +4,7 @@ require 'json'
 
 ALL_RECIPES = []
 
-# 3.times do |i|
+# 10.times do |i|
 #   # binding.pry
 #   response = RestClient.get("http://www.recipepuppy.com/api/?q=chicken&p=#{i+1}")
 #   # sleep(1)
@@ -13,6 +13,18 @@ ALL_RECIPES = []
 #     ALL_RECIPES << food_list
 #   end
 # end
+
+def pull_recipes(ingredient)
+  10.times do |i|
+    # binding.pry
+    response = RestClient.get("http://www.recipepuppy.com/api/?q=#{ingredient}&p=#{i+1}")
+    # sleep(1)
+    data = JSON.parse(response.body)
+    data["results"].each do |food_list|
+      ALL_RECIPES << food_list
+    end
+  end
+end
 #
 # 3.times do |i|
 #   # binding.pry
@@ -24,13 +36,13 @@ ALL_RECIPES = []
 #   end
 # end
 
-# def get_ingredients(arr)
-#   ingredients = []
-#   arr.each do |parameters|
-#     ingredients << parameters["ingredients"].split(", ")
-#   end
-#   ingredients.flatten.uniq.sort
-# end
+def get_ingredients(arr)
+  ingredients = []
+  arr.each do |parameters|
+    ingredients << parameters["ingredients"].split(", ")
+  end
+  ingredients.flatten.uniq.sort
+end
 
 # my_arr = get_ingredients(ALL_RECIPES)
 
@@ -38,8 +50,9 @@ def get_random
   rand(1..10)
 end
 
-def add_ingredients(ingredients)
-  ingredients.each do |ingr|
+def add_ingredients
+  all_ingredients = get_ingredients(ALL_RECIPES)
+  all_ingredients.each do |ingr|
     Ingredient.find_or_create_by(:name => ingr)
   end
 end
