@@ -45,11 +45,6 @@ class User < ActiveRecord::Base
         self.incomplete_recipes << h
      end
     end
-<<<<<<< HEAD
-    # binding.pry
-    # puts self.incomplete_recipes
-=======
->>>>>>> seeding-database
     nil
   end
 
