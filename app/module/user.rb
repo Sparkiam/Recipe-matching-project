@@ -38,26 +38,13 @@ class User < ActiveRecord::Base
       if missing.length == 0
         h["recipe "] = recipe
         h["missing"] = missing
-        @can_make << h
+        self.can_make << h
       elsif missing.length <= 2
         h["recipe "] = recipe
         h["missing"] = missing
-        @almost_can << h
+        self.almost_can << h
      end
     end
-    binding.pry
-    puts "You can make:"
-    # print_recipes(@can_make)
-    # puts "~~~~~~~~~~"
-    # puts "You need a few more ingredients"
-    # print_recipes(@almost_can)
-  end
-
-  def print_hash
-    @can_make.map do |recipe|
-      recipe.keys
-    end
-
   end
 
   def print_recipes(arr)
