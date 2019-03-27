@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
     User.delete(user.id)
   end
 
+  def magic
+    list = Ingredient.get_ingredients_names.sample(5)
+    list.each {|ingr| add_ingredient(ingr)}
+  end
+
   def add_ingredient(ingr)
     # binding.pry
     user = User.where("username = '#{self.username}'")[0]

@@ -10,4 +10,9 @@ class Ingredient < ActiveRecord::Base
     end
   end
 
+  def self.remove_ingredient(name)
+    ingredient = Ingredient.where("name = '#{name}'")[0]
+    Ingredient.delete(ingredient.id)
+  end
+
 end

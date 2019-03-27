@@ -8,6 +8,14 @@ class Recipe < ActiveRecord::Base
     end
   end
 
+  def self.remove_recipe(name)
+    if name.is_a?(String)
+      recipe = Recipe.where("name = '#{name}'")
+    else
+      puts "Wrong argument"
+    end
+  end
+
   def self.get_recipe_names
     Recipe.all.map do |recipe|
       recipe.name
