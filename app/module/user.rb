@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   end
 
   def self.remove_user(username)
-    user = User.where("username = '#{username}'")[0]
+    user = User.where("username = '#{username.downcase}'")[0]
     # binding.pry
     User.delete(user.id)
   end

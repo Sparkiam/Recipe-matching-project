@@ -16,6 +16,28 @@ def pull_recipes(ingredient)
   end
 end
 
+
+def add_cost
+  ids = Ingredient.all.ids
+  ids.each do |id|
+    Ingredient.update(id, cost: get_random)
+  end
+end
+
+def add_tastiness
+  ids = Ingredient.all.ids
+  ids.each do |id|
+    Ingredient.update(id, tastiness: get_random)
+  end
+end
+
+def add_prep_time
+  ids = Recipe.all.ids
+  ids.each do |id|
+    Recipe.update(id, prep_time: get_random)
+  end
+end
+
 def get_ingredients(arr)
   ingredients = []
   arr.each do |parameters|
