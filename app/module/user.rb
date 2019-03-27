@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
   has_many :user_ingredients
   has_many :ingredients, through: :user_ingredients
-  attr_accessor :can_make, :almost_can
+  attr_accessor :complete_recipes, :incomplete_recipes
 
   def initialize(username:)
     super
     @username = username
-    @can_make = []
-    @almost_can = []
+    @complete_recipes = []
+    @incomplete_recipes = []
   end
 
   def add_ingredient(ingr)
@@ -23,9 +23,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def get_recipes_i_can_make
-    @can_make = []
-    @almost_can = []
+  def get_recipes_i_complete_recipes
+    @complete_recipes = []
+    @incomplete_recipes = []
     h = {}
     Recipe.all.each do |recipe|
       missing = []
@@ -36,15 +36,18 @@ class User < ActiveRecord::Base
       end
       h = {}
       if missing.length == 0
-        h["recipe "] = recipe
+        h["recipe"] = recipe
         h["missing"] = missing
-        self.can_make << h
+        self.complete_recipes << h
       elsif missing.length <= 2
-        h["recipe "] = recipe
+        h["recipe"] = recipe
         h["missing"] = missing
-        self.almost_can << h
+        self.incomplete_recipes << h
      end
     end
+    # binding.pry
+    # puts self.incomplete_recipes
+    nil
   end
 
   def print_recipes(arr)
@@ -52,5 +55,34 @@ class User < ActiveRecord::Base
       puts "#{i+1} - #{recipe}"
     end
     return ""
+  end
+
+  def list_complete_recipes
+    puts "Lets search what you can cook"
+    puts "*" * 30
+    if @complete_recipes.length != 0
+      puts "With all of your ingredients, here is what you can make:"
+      self.complete_recipes.each_with_index do |recipe, i|
+        puts "#{i+1} - #{recipe["recipe"].name}"
+      end
+    else
+      puts "With your current ingredients there are no recipes you can make!"
+    end
+  end
+
+  def list_incomplete_recipes
+    puts "Lets see if you are missing couple of ingredients to cook amazing meals"
+    puts "*" * 30
+    if @incomplete_recipes.length != 0
+      puts "Huaaaa, good news, you only need a few more ingredients to make these recipes"
+      self.incomplete_recipes.each_with_index do |recipe, i|
+        puts "#{i+1} - #{recipe["recipe"].name}"
+        puts "    Here is what you missing:"
+        puts "    #{recipe["missing"].join(", ")}"
+      end
+    else
+      puts "Nope, nothing even close"
+    end
+    return "*" * 30
   end
 end
