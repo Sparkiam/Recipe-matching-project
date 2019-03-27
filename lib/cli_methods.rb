@@ -1,11 +1,22 @@
 def kitchen_query(user)
   puts "What food do you have in your kitchen?"
-  puts "Hint: Once you are done checking your kitchen, press 'q'\nPress 'i' for a ideas"
+  puts "Hint: Once you are done checking your kitchen, press 'q'\nPress 'h' for more options"
   food = ""
   while food != "q"
     food = gets.chomp.downcase
-    if food == "i"
-      puts Ingredient.get_ingredients_names.sample(10)
+    if food == "h"
+      puts "So, you need help?!\nPress 'i' for an idea of what you have\nOr press 'k' to list what is already in your kitchen!\nPress 'h' to exit this help menu\nAnd press 'x' to leave our program!"
+      # binding.pry
+      help = gets.chomp
+      if help == "i"
+        puts Ingredient.get_ingredients_names.sample(10)
+      elsif help == "k"
+        puts user.get_ingredients_names
+      elsif help == "h"
+        break
+      elsif help == "x"
+        return "Thank you! Maybe next time..."
+      end
     elsif Ingredient.get_ingredients_names.include?(food)
       user.add_ingredient(food)
       array = ["That's gross", "Wow, me too!", "I just ran out of that!", "My cat likes that too", "We threw one of those away this morning, I hope you didn't get ours...", "#{food.capitalize}! Sounds tasty!!!"]
@@ -45,5 +56,7 @@ def cooking(current_user)
   sleep(1)
   puts "Ding, all sorted!"
   current_user.get_recipes_i_can_make
+  current_user.list_complete_recipes
+  current_user.list_incomplete_recipes
   #it goes back into the decision method. So we need to connect to a new method or break out of that one
 end
