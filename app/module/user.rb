@@ -3,7 +3,9 @@ class User < ActiveRecord::Base
   has_many :ingredients, through: :user_ingredients
   attr_accessor = :can_make, :almost_can
 
-  def initialize()
+  def initialize(username:)
+    super
+    @username = username
     @can_make = []
     @almost_can = []
   end
