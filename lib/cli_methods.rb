@@ -5,6 +5,13 @@ def greeting
   puts "Please, tell us your name"
 end
 
+def loading(length, symbol)
+  length.times do |a|
+    print symbol
+    sleep(0.05)
+  end
+end
+
 def gathering_user_data(input)
   current_user = User.find_by("username = '#{input}'")
   if current_user
@@ -89,40 +96,40 @@ end
 def functions(current_user)
   input = ""
   while input != "5"
-  puts "\nHow can I help you?"
-  puts "
-  1) Check my Kitchen for Ingredients\n
-  2) See what Recipes I can make\n
-  3) Cook a Recipe\n
-  4) Remove Myself from this confounded Program\n
-  5) Exit the program"
-  input = gets.chomp
-  if input == "1"
-    kitchen_query(current_user)
-  elsif input == "2"
-    cooking(current_user)
-  elsif input == "3"
-    #method
-  elsif input == "4"
-    puts "Oh, are you sure!?\nY/N"
-    confirm = gets.chomp
-    if confirm == "Y"
-      puts "Oh, alright...."
-      sleep(1)
-      puts "I told myself I wouldn't cry.."
-      sleep(1)
-      puts "Very well then"
-      User.remove_user("#{current_user.username}")
-      return "Goodbye"
+    puts "\nHow can I help you?"
+    puts "
+    1) Check my Kitchen for Ingredients\n
+    2) See what Recipes I can make\n
+    3) Cook a Recipe\n
+    4) Remove Myself from this confounded Program\n
+    5) Exit the program"
+    input = gets.chomp
+    if input == "1"
+      kitchen_query(current_user)
+    elsif input == "2"
+      cooking(current_user)
+    elsif input == "3"
+      #method
+    elsif input == "4"
+      puts "Oh, are you sure!?\nY/N"
+      confirm = gets.chomp
+      if confirm == "Y"
+        puts "Oh, alright...."
+        sleep(1)
+        puts "I told myself I wouldn't cry.."
+        sleep(1)
+        puts "Very well then"
+        User.remove_user("#{current_user.username}")
+        return "Goodbye"
+      else
+        puts "Oh, you must've hit this by mistake! Sorry about that!"
+      end
+    elsif input == "5" || input == "quit"
+      puts "Loud and clear! Until next time...."
+      break
     else
-      puts "Oh, you must've hit this by mistake! Sorry about that!"
+      puts "Nice try, but not nice enough"
+      sleep(1)
     end
-  elsif input == "5" || input == "quit"
-    puts "Loud and clear! Until next time...."
-    break
-  else
-    puts "Nice try, but not nice enough"
-    sleep(1)
   end
-end
 end
