@@ -14,9 +14,12 @@ sleep(1)
 puts "Well, #{input}, I guess we could help you out!"
 sleep(1)
 puts "So, tell us something..."
+
 kitchen_query(current_user)
+
 puts "So that's your whoooooolllllleeeee kitchen, huh?"
 sleep(1)
 puts "Are you ready to cook?\n1) 'Yes'\n2) 'Hold on, I've got more food!''\n3)'I'm out, you are rude!'"
-choice = gets.chomp
-decision(choice, current_user)
+
+
+decision(current_user)

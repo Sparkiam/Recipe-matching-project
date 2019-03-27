@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :user_ingredients
   has_many :ingredients, through: :user_ingredients
-  attr_accessor = :can_make, :almost_can
+  attr_accessor :can_make, :almost_can
 
   def initialize(username:)
     super
