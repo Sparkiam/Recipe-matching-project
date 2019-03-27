@@ -8,6 +8,18 @@ class Recipe < ActiveRecord::Base
     end
   end
 
+  # def self.get_recipe_names
+  #   Recipe.all.map do |recipe|
+  #     recipe.name
+  #   end
+  # end
+
+  def self.get_overlaping
+    self.get_recipe_names.map do |recipe|
+
+    end
+  end
+
   def self.get_average_ingredient_per_recipe
     (Recipe.all.inject(0.0) do |sum, recipe|
       sum + recipe.ingredients.length

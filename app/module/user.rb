@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
         self.almost_can << h
      end
     end
+    nil
   end
 
   def print_recipes(arr)
