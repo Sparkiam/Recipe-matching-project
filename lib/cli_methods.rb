@@ -10,22 +10,40 @@ def kitchen_query(user)
       user.add_ingredient(food)
       array = ["That's gross", "Wow, me too!", "I just ran out of that!", "My cat likes that too", "We threw one of those away this morning, I hope you didn't get ours...", "#{food.capitalize}! Sounds tasty!!!"]
       puts array.sample
-    else
+    elsif food != "q"
       puts "Whoa, that's not an ingredient we have on record! Please try again!"
     end
   end
 end
 
-# change it to while...or until loop?
-# def decision(choice, current_user)
-#   if choice == "1"
-#     #new method
-#   elsif choice == "2"
-#     puts "Oh, there's more!"
-#     kitchen_query(current_user)
-#   elsif choice == "3"
-#     puts "Oh okay, TTFN!"
-#     break
-#   else
-#     puts "What!? I didn't catch that"
-# end
+def decision(current_user)
+  choice = ""
+  while choice != "3"
+    choice = gets.chomp
+    if choice == "1"
+      puts "Let's get started!"
+      cooking(current_user)
+      #should choosing this option break you out of this method?
+    elsif choice == "2"
+      puts "Oh, there's more!"
+      kitchen_query(current_user)
+      puts "Now are you ready to cook?"
+      puts "1) 'Yes!'\n2) 'Hold on, hold on, I've got even MORE food!''\n3)'I'm out, you are very rude!'"
+    elsif choice == "3"
+      break
+    else
+      puts "What!? I didn't catch that"
+    end
+  end
+  puts "Oh okay, TTFN!"
+end
+
+def cooking(current_user)
+  puts "So, you have your ingredients, yea?\n\nLet's find out what you can make..."
+  sleep(1)
+  puts "Sorting.... Processing...\n"
+  sleep(1)
+  puts "Ding, all sorted!"
+  current_user.get_recipes_i_can_make
+  #it goes back into the decision method. So we need to connect to a new method or break out of that one
+end
