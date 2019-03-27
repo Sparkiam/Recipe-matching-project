@@ -40,11 +40,12 @@ end
 
 def cooking(current_user)
   puts "So, you have your ingredients, yea?\n\nLet's find out what you can make..."
-  # sleep(1)
+  sleep(1)
   puts "Sorting.... Processing...\n"
-  # sleep(1)
+  sleep(1)
   puts "Ding, all sorted!"
   current_user.get_recipes_i_complete_recipes
-  binding.pry
+  current_user.list_complete_recipes
+  current_user.list_incomplete_recipes
   #it goes back into the decision method. So we need to connect to a new method or break out of that one
 end

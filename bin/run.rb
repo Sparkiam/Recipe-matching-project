@@ -6,11 +6,11 @@ puts "Welcome to your nightmare!\nWe are your hosts: Yev and Jack!"
 puts "~~~~~~\n~~~~~~\n~~~~~~"
 # sleep(1)
 puts "Please, tell us your name"
-input = gets.chomp.capitalize
+input = gets.chomp.downcase
 current_user = User.find_or_create_by(:username => input)
-puts "#{input}?! What a dumb name!!"
+puts "#{input.upcase}?! What a dumb name!!"
 # sleep(1)
-puts "Well, #{input}, I guess we could help you out!"
+puts "Well, #{input.upcase}, I guess we could help you out!"
 # sleep(1)
 puts "So, tell us something..."
 
