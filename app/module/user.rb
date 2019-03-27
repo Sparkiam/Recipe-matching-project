@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
     User.delete(user.id)
   end
 
+  def magic
+    list = Ingredient.get_ingredients_names.sample(5)
+    list.each {|ingr| add_ingredient(ingr)}
+  end
+
   def add_ingredient(ingr)
     # binding.pry
     user = User.where("username = '#{self.username}'")[0]
@@ -29,7 +34,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def get_recipes_i_complete_recipes
+  def get_recipes_i_can_make
     @complete_recipes = []
     @incomplete_recipes = []
     h = {}

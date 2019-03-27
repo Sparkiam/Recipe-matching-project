@@ -8,4 +8,6 @@
 
 4) Add loading line while searching recipes and output them after it loads
 
-5) 
+5) Hard code egg into "The Perfect Hard-boiled Egg Recipe"
+  AND
+  initialize a user with water and ice

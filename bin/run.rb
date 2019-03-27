@@ -20,3 +20,4 @@ puts "So that's your whoooooolllllleeeee kitchen, huh?"
 # sleep(1)
 puts "Are you ready to cook?\n1) 'Yes'\n2) 'Hold on, I've got more food!''\n3)'I'm out, you are rude!'"
 decision(current_user)
+Í
