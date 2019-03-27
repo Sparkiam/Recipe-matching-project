@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_25_201425) do
+ActiveRecord::Schema.define(version: 2019_03_27_213545) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_03_25_201425) do
     t.string "username"
     t.integer "money"
     t.integer "incapacitation"
+    t.string "password"
   end
 
 end
