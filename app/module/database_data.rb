@@ -66,8 +66,10 @@ def map_recipe_with_ingredient(recipe_list)
   recipe_list.each do |recipe|
     new = add_recipe(recipe)
     recipe["ingredients"].split(", ").each do |ing|
-      ingredient = Ingredient.where("name = '#{ing}'")[0]
-      RecipeIngredient.find_or_create_by(:recipe_id => new.id, :ingredient_id => ingredient.id)
+      if !ing.include?(" ")
+        ingredient = Ingredient.where("name = '#{ing}'")[0]
+        RecipeIngredient.find_or_create_by(:recipe_id => new.id, :ingredient_id => ingredient.id)
+      end
     end
   end
 end

@@ -10,6 +10,12 @@ class User < ActiveRecord::Base
     @incomplete_recipes = []
   end
 
+  def self.remove_user(username)
+    user = User.where("username = '#{username}'")[0]
+    # binding.pry
+    User.delete(user.id)
+  end
+
   def add_ingredient(ingr)
     # binding.pry
     user = User.where("username = '#{self.username}'")[0]
