@@ -3,6 +3,16 @@ def greeting
   puts "~~~~~~\n~~~~~~\n~~~~~~"
   # sleep(1)
   puts "Please, tell us your name, kind one"
+<<<<<<< HEAD
+=======
+end
+
+def loading(length, sym)
+  length.times do |a|
+    print symbol
+    sleep(0.05)
+  end
+>>>>>>> additional_cli
 end
 
 def gathering_user_data(input)
@@ -63,6 +73,7 @@ def kitchen_query(user)
 end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # def decision(current_user)
 #   choice = ""
 #   while choice != "3"
@@ -89,6 +100,9 @@ def cooking(user)
 =======
 def cooking(current_user)
 >>>>>>> f87591c385e2914d4f0802a804c1be659a4470a3
+=======
+def cooking(user)
+>>>>>>> additional_cli
   puts "So, you have your ingredients, yea?\n\nLet's find out what you can make..."
   sleep(1)
   puts "Sorting.... Processing...\n"
@@ -112,7 +126,10 @@ def cooking(current_user)
       puts "Huaaaa, good news, you only need a few more ingredients to make these recipes"
       puts "*" * 30
       puts user.list_incomplete_recipes
+<<<<<<< HEAD
       puts "*"* 30
+=======
+>>>>>>> additional_cli
       puts "*" * 30
     elsif is_numeric?(input) && input.to_i <= user.complete_recipes.length && input != "0"
       index = input.to_i
