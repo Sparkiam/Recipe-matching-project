@@ -59,16 +59,14 @@ class User < ActiveRecord::Base
     nil
   end
 
-  def print_recipes(arr)
-    arr.each_with_index do |recipe, i|
+  def print_recipes
+    self.get_ingredients_names.each_with_index do |recipe, i|
       puts "#{i+1} - #{recipe}"
     end
     return ""
   end
 
   def list_complete_recipes
-    puts "Lets search what you can cook"
-    puts "*" * 30
     if @complete_recipes.length != 0
       puts "With all of your ingredients, here is what you can make:"
       self.complete_recipes.each_with_index do |recipe, i|
@@ -79,19 +77,18 @@ class User < ActiveRecord::Base
     end
   end
 
+
+
   def list_incomplete_recipes
-    puts "Lets see if you are missing couple of ingredients to cook amazing meals"
-    puts "*" * 30
+    # puts "Lets see if you are missing couple of ingredients to cook amazing meals"
     if @incomplete_recipes.length != 0
-      puts "Huaaaa, good news, you only need a few more ingredients to make these recipes"
       self.incomplete_recipes.each_with_index do |recipe, i|
         puts "#{i+1} - #{recipe["recipe"].name}"
-        puts "    Here is what you missing:"
-        puts "    #{recipe["missing"].join(", ")}"
+        puts "     Here is what you missing:"
+        puts "      #{recipe["missing"].join(", ")}"
       end
     else
       puts "Nope, nothing even close"
     end
-    return "*" * 30
   end
 end

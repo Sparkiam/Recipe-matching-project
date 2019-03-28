@@ -46,6 +46,8 @@ def get_ingredients(arr)
   ingredients.flatten.uniq.sort
 end
 
+print
+
 def get_random
   rand(1..10)
 end
