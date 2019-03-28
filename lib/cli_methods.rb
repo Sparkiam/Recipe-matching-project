@@ -62,6 +62,7 @@ def kitchen_query(user)
   puts "Oh alright! So then..."
 end
 
+<<<<<<< HEAD
 # def decision(current_user)
 #   choice = ""
 #   while choice != "3"
@@ -85,6 +86,9 @@ end
 # end
 
 def cooking(user)
+=======
+def cooking(current_user)
+>>>>>>> f87591c385e2914d4f0802a804c1be659a4470a3
   puts "So, you have your ingredients, yea?\n\nLet's find out what you can make..."
   sleep(1)
   puts "Sorting.... Processing...\n"
