@@ -34,6 +34,8 @@ def gathering_user_data(input)
     puts "#{input.capitalize}?! Can it really be you!?!!\n\nWelcome #{input.capitalize}"
     sleep(1)
     puts "Let's get some things set up."
+    puts "\n*** - Normally it takes at least 10 ingredients to cook something.  - ***"
+    puts "\n*** - Then go to the main menu to see what recipes you can make.    - ***"
     kitchen_query(current_user)
   end
   return current_user
@@ -128,9 +130,11 @@ def cooking(user)
     puts "'q' - To go back to the main menu"
     if user.complete_recipes.length == 1
       puts "'1' - To get the link of that recipe"
+    elsif user.complete_recipes.length == 0
+      puts ""
     else
-      max_num = user.complete_recipes.length
-      puts "'1-#{max_num}' - To get a link of that recipe"
+      complete_recipe_size = user.complete_recipes.length
+      puts "'1-#{complete_recipe_size}' - To get a link of that recipe"
     end
     input = gets.chomp
     # binding.pry
