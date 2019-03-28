@@ -109,6 +109,7 @@ def cooking(user)
       puts "*" * 30
       puts user.list_incomplete_recipes
       puts "*"* 30
+      puts "*" * 30
     elsif is_numeric?(input) && input.to_i <= user.complete_recipes.length && input != "0"
       index = input.to_i
       puts outputs_recipe_link(user, index)
