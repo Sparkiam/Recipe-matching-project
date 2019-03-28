@@ -145,7 +145,8 @@ def cooking(user)
       puts "*" * 30
     elsif is_numeric?(input) && input.to_i <= user.complete_recipes.length && input != "0"
       index = input.to_i
-      puts outputs_recipe_link(user, index)
+      puts "\nHere is your link for #{user.complete_recipes[index-1]["recipe"].name}:"
+      puts "Link: #{outputs_recipe_link(user, index)}"
     elsif input.to_i && input.to_i > user.complete_recipes.length
       puts "Oh, sorry, that's not a recipe you can make!"
     elsif input == 'q'
