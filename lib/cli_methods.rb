@@ -59,28 +59,6 @@ def kitchen_query(user)
   end
 end
 
-# def decision(current_user)
-#   choice = ""
-#   while choice != "3"
-#     choice = gets.chomp
-#     if choice == "1"
-#       puts "Let's get started!"
-#       cooking(current_user)
-#       #should choosing this option break you out of this method?
-#     elsif choice == "2"
-#       puts "Oh, there's more!"
-#       kitchen_query(current_user)
-#       puts "Now are you ready to cook?"
-#       puts "1) 'Yes!'\n2) 'Hold on, hold on, I've got even MORE food!''\n3)'I'm out, you are very rude!'"
-#     elsif choice == "3"
-#       break
-#     else
-#       puts "What!? I didn't catch that"
-#     end
-#   end
-#   puts "Oh okay, TTFN!"
-# end
-
 def cooking(current_user)
   puts "So, you have your ingredients, yea?\n\nLet's find out what you can make..."
   sleep(1)
