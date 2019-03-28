@@ -1,5 +1,7 @@
 require_relative '../config/environment'
+ActiveRecord::Base.logger = nil
 
+system "clear" or system "cls"
 # puts "Yo dog, I heard you like ingredients. You can ingredient while you in ingredient so you can ingredient while you ingredient."
 
 greeting
@@ -9,7 +11,7 @@ input = gets.chomp.downcase
 current_user = gathering_user_data(input)
 
 functions(current_user)
-# 
+#
 #
 #
 # kitchen_query(current_user)

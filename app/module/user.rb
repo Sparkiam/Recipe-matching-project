@@ -16,6 +16,12 @@ class User < ActiveRecord::Base
     User.delete(user.id)
   end
 
+  def remove_my_ingredient(ingredient, user)
+    ingr_id = Ingredient.find_by("name = '#{ingredient}'").id
+    self.ingredients.delete(ingr_id)
+    user = User.find(user.id)
+  end
+
   def magic
     list = Ingredient.get_ingredients_names.sample(5)
     list.each {|ingr| add_ingredient(ingr)}
@@ -77,8 +83,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
-
   def list_incomplete_recipes
     # puts "Lets see if you are missing couple of ingredients to cook amazing meals"
     if @incomplete_recipes.length != 0
@@ -90,5 +94,6 @@ class User < ActiveRecord::Base
     else
       puts "Nope, nothing even close"
     end
+    return ""
   end
 end
