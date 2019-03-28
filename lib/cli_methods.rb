@@ -15,7 +15,7 @@ end
 def gathering_user_data(input)
   current_user = User.find_by("username = '#{input}'")
   if current_user
-     puts "Oh, no, not you again..."
+    puts "Oh, no, not you again..."
   else
     current_user = User.create(:username => input)
     puts "#{input.capitalize}?! What a dumb name!!"
