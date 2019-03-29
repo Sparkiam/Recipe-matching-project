@@ -29,7 +29,7 @@ class Recipe < ActiveRecord::Base
   def self.get_overlaping
     self.get_recipe_names.map do |recipe|
       self.get_uniq_recipe_names.each do |u_recipe|
-
+        
       end
     end
   end

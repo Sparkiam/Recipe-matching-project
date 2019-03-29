@@ -46,10 +46,8 @@ def get_ingredients(arr)
   ingredients.flatten.uniq.sort
 end
 
-print
-
-def get_random
-  rand(1..10)
+def get_random(first, last)
+  rand(first..last)
 end
 
 def add_ingredients
