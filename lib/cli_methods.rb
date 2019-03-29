@@ -1,3 +1,5 @@
+COUNTER = 0
+
 def greeting
   puts "Welcome to Kitchen Helper!\nWe are your hosts: Yev and Jack!"
   # puts "~~~~~~\n~~~~~~\n~~~~~~"
@@ -97,7 +99,7 @@ def kitchen_query(user)
   puts "Oh alright! So then..."
 end
 
-def cooking(user)
+def cooking(user, counter)
   system "clear" or system "cls"
   puts "So, you have your ingredients, yea?\n\nLet's find out what you can make..."
   sleep(1)
@@ -125,25 +127,28 @@ def cooking(user)
   sleep(1.5)
   input = ""
   while input != 'q'
-    puts ""
-    puts "'inc' - To list the recipes you can't make but you could if you had few more ingredients."
-    puts "'q' - To go back to the main menu"
+    if counter > 3 || counter == 0
+      puts ""
+      puts "'inc' - To list the recipes you can't make but you could if you had few more ingredients."
+      puts "'q' - To go back to the main menu"
+    end
     if user.complete_recipes.length == 1
       puts "'1' - To get the link of that recipe"
     elsif user.complete_recipes.length == 0
       puts ""
-    else
+    elsif counter > 3 || counter == 0
       complete_recipe_size = user.complete_recipes.length
-      puts "'1-#{complete_recipe_size}' - To get a link of that recipe"
+      puts "\n'1-#{complete_recipe_size}' - To get a link of that recipe"
     end
     input = gets.chomp.downcase.strip
-    # binding.pry
     if input == 'inc'
+      counter = 0
       puts "Huaaaa, good news, you only need a few more ingredients to make these recipes"
       puts "*" * 30
       puts user.list_incomplete_recipes
       puts "*" * 30
     elsif is_numeric?(input) && input.to_i <= user.complete_recipes.length && input != "0"
+      counter += 1
       index = input.to_i
       puts "\nHere is your link for #{user.complete_recipes[index-1]["recipe"].name}:"
       puts "Link: #{outputs_recipe_link(user, index)}"
@@ -170,6 +175,7 @@ end
 
 def functions(current_user)
   input = ""
+  counter = 0
   while input != "4"
     puts "\nHow can I help you?"
     total_rec = Recipe.all.length
@@ -184,7 +190,7 @@ def functions(current_user)
     if input == "1"
       kitchen_query(current_user)
     elsif input == "2"
-      cooking(current_user)
+      cooking(current_user, counter)
     elsif input == "3"
       puts "Oh, are you sure!?\nY/N"
       confirm = gets.chomp
