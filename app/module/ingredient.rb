@@ -10,6 +10,14 @@ class Ingredient < ActiveRecord::Base
     end
   end
 
+  def self.find_capitalized
+    ingredients = Ingredient.get_ingredients_names
+    ingredients.select do |ingr|
+      first_letter = ingr[0]
+      first_letter == first_letter.upcase
+    end
+  end
+
   def self.remove_ingredient(name)
     ingredient = Ingredient.where("name = '#{name}'")[0]
     Ingredient.delete(ingredient.id)

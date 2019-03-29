@@ -55,7 +55,7 @@ def kitchen_query(user)
       end
     end
     # i += 1
-    food = gets.chomp.downcase
+    food = gets.chomp.downcase.strip
     if food == "h"
       puts "\nSo, you need help?!\n'i' - For what you might have in your kitchen!\n'k' - To list what is already in your kitchen!\n'm' - To magically add food to your kitchen!\n'd' - To remove an item from your kitchen!\n'q' - To quit checking your kitchen!"
       i = 0
@@ -74,7 +74,7 @@ def kitchen_query(user)
       i += 1
     elsif food == "d"
       puts "Ohhh... what you dont have in your kitchen?"
-      input = gets.chomp
+      input = gets.chomp.downcase.strip
       if user.get_ingredients_names.include?(input)
         user.remove_my_ingredient(input, user)
       else
@@ -136,7 +136,7 @@ def cooking(user)
       complete_recipe_size = user.complete_recipes.length
       puts "'1-#{complete_recipe_size}' - To get a link of that recipe"
     end
-    input = gets.chomp
+    input = gets.chomp.downcase.strip
     # binding.pry
     if input == 'inc'
       puts "Huaaaa, good news, you only need a few more ingredients to make these recipes"
@@ -180,7 +180,7 @@ def functions(current_user)
     3) Remove Myself from this confounded Program\n
     4) Exit the program\n "
     puts
-    input = gets.chomp
+    input = gets.chomp.downcase.strip
     if input == "1"
       kitchen_query(current_user)
     elsif input == "2"
@@ -213,7 +213,7 @@ def functions(current_user)
       if secret_input == "1"
         system "clear" or system "cls"
         puts "INPUT WHAT RECIPES YOU WOULD LIKE TO ADD"
-        new_recipes = gets.chomp
+        new_recipes = gets.chomp.strip
         pull_recipes(new_recipes)
         add_ingredients
         map_recipe_with_ingredient(ALL_RECIPES)
