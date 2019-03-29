@@ -137,6 +137,7 @@ def cooking(user, counter)
     elsif user.complete_recipes.length == 0
       puts ""
     elsif counter > 3 || counter == 0
+      counter = 0
       complete_recipe_size = user.complete_recipes.length
       puts "\n'1-#{complete_recipe_size}' - To get a link of that recipe"
     end
